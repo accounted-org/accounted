@@ -7,5 +7,13 @@
   "home": {
     "title": "Welcome to Accounted",
     "meta_description": "Your personal finance manager."
+  },
+  "transactions": {
+    "title": "Transactions",
+    "value": "Amount",
+    "date": "Date",
+    "source": "Source",
+    "category": "Category",
+    "no_transactions": "No transactions available."
   }
 }
