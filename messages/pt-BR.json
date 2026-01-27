@@ -10,7 +10,7 @@
   },
   "transactions": {
     "title": "Transações",
-    "value": "Valor",
+    "amount": "Valor",
     "date": "Data",
     "source": "Fonte",
     "category": "Categoria",
