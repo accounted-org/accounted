@@ -7,5 +7,13 @@
   "home": {
     "title": "Bem-vindo ao Accounted",
     "meta_description": "Seu gerenciador de finanças pessoais."
+  },
+  "transactions": {
+    "title": "Transações",
+    "value": "Valor",
+    "date": "Data",
+    "source": "Fonte",
+    "category": "Categoria",
+    "no_transactions": "Nenhuma transação disponível."
   }
 }

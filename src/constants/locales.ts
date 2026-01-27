@@ -1,7 +1,6 @@
-export type Locales = 'en-US' | 'pt-BR';
-export const locales: Locales[] = ['en-US', 'pt-BR'];
+export enum Locales {
+  EN_US = 'en-US',
+  PT_BR = 'pt-BR',
+}
 
-export const localesMap: Record<Locales, Locales> = {
-  'en-US': 'pt-BR',
-  'pt-BR': 'en-US',
-};
+export const locales: Locales[] = [Locales.EN_US, Locales.PT_BR];
