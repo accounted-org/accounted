@@ -37,7 +37,7 @@ jobs:
 
   deploy:
     needs: build
-    runs-on: self-hosted
+    runs-on: [self-hosted, frontend]
     environment: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
 
     steps:
