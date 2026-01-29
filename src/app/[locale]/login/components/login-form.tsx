@@ -1,18 +1,21 @@
 'use client';
 
-import { loginSchema, LoginSchemaData } from '@/src/lib';
+import { createLoginSchema, LoginSchemaData } from '@/src/lib';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button, Input } from 'antd';
+import { useTranslations } from 'next-intl';
 import { useCallback } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 
 export function LoginForm() {
+  const t = useTranslations('login');
+
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginSchemaData>({
-    resolver: zodResolver(loginSchema),
+    resolver: zodResolver(createLoginSchema(t)),
   });
 
   const onSubmit = useCallback((data: LoginSchemaData) => {
@@ -22,7 +25,7 @@ export function LoginForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
       <div>
-        <label>E-mail</label>
+        <label>{t('email_label')}</label>
         <Controller
           name="email"
           control={control}
@@ -32,7 +35,7 @@ export function LoginForm() {
       </div>
 
       <div>
-        <label>Senha</label>
+        <label>{t('password_label')}</label>
         <Controller
           name="password"
           control={control}
@@ -42,7 +45,7 @@ export function LoginForm() {
       </div>
 
       <Button type="primary" className="w-full" htmlType="submit">
-        Enviar
+        {t('submit_button')}
       </Button>
     </form>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import { Locales } from '@/src/constants';
-import { usePathname, useRouter } from '@/src/i18n';
+import { usePathname, useRouter } from '@/src/lib/i18n';
 import { useTranslations } from 'next-intl';
 import { useCallback } from 'react';
 

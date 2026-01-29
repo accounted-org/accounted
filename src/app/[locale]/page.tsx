@@ -1,4 +1,4 @@
-import { Link } from '@/src/i18n';
+import { Link } from '@/src/lib/i18n';
 import { useTranslations } from 'next-intl';
 
 export default function Home() {

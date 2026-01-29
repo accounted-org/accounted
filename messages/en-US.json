@@ -15,5 +15,21 @@
     "source": "Source",
     "category": "Category",
     "no_transactions": "No transactions available."
+  },
+  "login": {
+    "title": "Login to Your Account",
+    "email_label": "Email",
+    "password_label": "Password",
+    "submit_button": "Submit",
+    "email_required": "Email is required.",
+    "password_required": "Password is required.",
+    "errors": {
+      "email": {
+        "invalid": "Please enter a valid email address."
+      },
+      "password": {
+        "required": "Password is required."
+      }
+    }
   }
 }
