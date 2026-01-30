@@ -1,5 +1,5 @@
-import { GetFunction, SetFunction } from '../../common';
-import { TransactionStore, TransactionStoreActions } from './types';
+import { GetFunction, SetFunction } from "../../common";
+import { TransactionStore, TransactionStoreActions } from "./types";
 
 export const transactionActions = (
   set: SetFunction<TransactionStore>,

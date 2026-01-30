@@ -31,5 +31,27 @@
         "required": "Senha é obrigatória."
       }
     }
+  },
+  "signup": {
+    "title": "Crie sua conta",
+    "email_label": "E-mail",
+    "name_label": "Nome completo",
+    "birthDate_label": "Data de nascimento",
+    "birthDate_placeholder": "Selecione a data",
+    "password_label": "Senha",
+    "submit_button": "Registrar",
+    "email_required": "E-mail é obrigatório.",
+    "password_required": "Senha é obrigatória.",
+    "errors": {
+      "email": {
+        "invalid": "Por favor, insira um endereço de e-mail válido."
+      },
+      "password": {
+        "required": "Senha é obrigatória."
+      },
+      "name": {
+        "required": "Por favor nos diga seu nome."
+      }
+    }
   }
 }

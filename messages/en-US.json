@@ -31,5 +31,27 @@
         "required": "Password is required."
       }
     }
+  },
+  "signup": {
+    "title": "Sign Up",
+    "email_label": "Email",
+    "name_label": "Name",
+    "birthDate_label": "Birth date",
+    "birthDate_placeholder": "Select a date",
+    "password_label": "Password",
+    "submit_button": "Register",
+    "email_required": "Email is required.",
+    "password_required": "Password is required.",
+    "errors": {
+      "email": {
+        "invalid": "Please enter a valid email address."
+      },
+      "password": {
+        "required": "Password is required."
+      },
+      "name": {
+        "required": "Please tell us your name."
+      }
+    }
   }
 }
