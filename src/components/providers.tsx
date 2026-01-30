@@ -1,12 +1,7 @@
-import { NextIntlClientProvider } from 'next-intl';
-import { AntdRegistry } from '@ant-design/nextjs-registry';
+import { NextIntlClientProvider } from "next-intl";
 
 export function Providers({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return (
-    <NextIntlClientProvider>
-      <AntdRegistry>{children}</AntdRegistry>
-    </NextIntlClientProvider>
-  );
+  return <NextIntlClientProvider>{children}</NextIntlClientProvider>;
 }
