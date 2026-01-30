@@ -15,5 +15,21 @@
     "source": "Fonte",
     "category": "Categoria",
     "no_transactions": "Nenhuma transação disponível."
+  },
+  "login": {
+    "title": "Faça login na sua conta",
+    "email_label": "E-mail",
+    "password_label": "Senha",
+    "submit_button": "Enviar",
+    "email_required": "E-mail é obrigatório.",
+    "password_required": "Senha é obrigatória.",
+    "errors": {
+      "email": {
+        "invalid": "Por favor, insira um endereço de e-mail válido."
+      },
+      "password": {
+        "required": "Senha é obrigatória."
+      }
+    }
   }
 }
