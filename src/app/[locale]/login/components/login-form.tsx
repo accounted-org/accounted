@@ -13,10 +13,18 @@ import {
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
-import {cn} from "@/lib/utils";
+import { cn } from "@/src/lib/utils";
+import { useAuth } from "@/src/hooks";
+import { ErrorLabel } from "@/src/components";
+import Link from "next/link";
 
-export function LoginForm() {
+interface Props {
+  onFinish: (shouldEnableMfa: boolean) => void;
+}
+
+export function LoginForm({ onFinish }: Readonly<Props>) {
   const t = useTranslations("login");
+  const { login, error, loading } = useAuth();
 
   const {
     control,
@@ -30,9 +38,17 @@ export function LoginForm() {
     },
   });
 
-  const onSubmit = useCallback((data: LoginSchemaData) => {
-    console.log(data);
-  }, []);
+  const onSubmit = useCallback(
+    async (data: LoginSchemaData) => {
+      const response = await login(data);
+      if (response.error) {
+        return;
+      }
+
+      onFinish(response.shouldEnableMfa);
+    },
+    [login, onFinish],
+  );
 
   return (
     <form
@@ -56,7 +72,7 @@ export function LoginForm() {
         <Controller
           name="password"
           control={control}
-          render={({field, fieldState}) => (
+          render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="password">{t("password_label")}</FieldLabel>
               <Input
@@ -65,7 +81,7 @@ export function LoginForm() {
                 id="password"
                 aria-invalid={fieldState.invalid}
               />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]}/>}
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />
@@ -73,15 +89,30 @@ export function LoginForm() {
         <Field className={cn(!isValid && "cursor-not-allowed")}>
           <Button
             variant="default"
-            disabled={!isValid}
+            disabled={!isValid || loading}
             className="tracking-wider transition-all ease-in-out duration-300 w-full enabled:cursor-pointer enabled:hover:bg-[#A66CFF] enabled:bg-[#8B5CF6]"
             type="submit"
             form="signin-form"
+            isLoading={loading}
+            loaderColor="#fff"
           >
             {t("submit_button")}
           </Button>
         </Field>
       </FieldGroup>
+
+      <div>
+        {error && <ErrorLabel text={t("errors.invalid_credentials")} />}
+      </div>
+
+      <div className="text-center">
+        <span>
+          Não possui uma conta?{" "}
+          <Link href="/signup">
+            <span className="underline">Registre-se</span>
+          </Link>
+        </span>
+      </div>
     </form>
   );
 }
