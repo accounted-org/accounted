@@ -1,31 +1,37 @@
 "use client";
 
-import {SignupSchemaData, createSignupSchema} from "@/src/lib";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {useTranslations} from "next-intl";
-import {useCallback, useMemo, useState} from "react";
-import {Controller, useForm} from "react-hook-form";
-import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
+import { SignupSchemaData, createSignupSchema } from "@/src/lib";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
+import { useCallback, useMemo } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
 } from "@/components/ui/field";
-import {Calendar} from "@/components/ui/calendar";
+import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {cn} from "@/lib/utils";
-import {ptBR, enUS} from "date-fns/locale";
-import {useLocale} from "next-intl";
+import { cn } from "@/src/lib/utils";
+import { ptBR, enUS } from "date-fns/locale";
+import { useLocale } from "next-intl";
+import Link from "next/link";
+import { useRegister } from "@/src/hooks";
+import { useRouter } from "next/navigation";
+import { ErrorLabel } from "@/src/components";
 
 export function SignupForm() {
   const t = useTranslations("signup");
   const locale = useLocale();
+  const { register, loading, error } = useRegister();
+  const router = useRouter();
 
   const calendarLocale = useMemo(() => {
     if (locale.toLowerCase().startsWith("pt")) return ptBR;
@@ -35,7 +41,7 @@ export function SignupForm() {
   const {
     control,
     handleSubmit,
-    formState: {isValid},
+    formState: { isValid },
   } = useForm<SignupSchemaData>({
     resolver: zodResolver(createSignupSchema(t)),
     defaultValues: {
@@ -46,9 +52,17 @@ export function SignupForm() {
     },
   });
 
-  const onSubmit = useCallback((data: SignupSchemaData) => {
-    console.log(data);
-  }, []);
+  const onSubmit = useCallback(
+    async (data: SignupSchemaData) => {
+      const succcess = await register(data);
+      if (!succcess) {
+        return;
+      }
+
+      router.push("login");
+    },
+    [register, router],
+  );
 
   return (
     <form
@@ -60,11 +74,11 @@ export function SignupForm() {
         <Controller
           name="name"
           control={control}
-          render={({field, fieldState}) => (
+          render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="name">{t("name_label")}</FieldLabel>
-              <Input {...field} id="name" aria-invalid={fieldState.invalid}/>
-              {fieldState.invalid && <FieldError errors={[fieldState.error]}/>}
+              <Input {...field} id="name" aria-invalid={fieldState.invalid} />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />
@@ -72,7 +86,7 @@ export function SignupForm() {
         <Controller
           name="birthDate"
           control={control}
-          render={({field, fieldState}) => {
+          render={({ field, fieldState }) => {
             return (
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel htmlFor="birthDate">
@@ -104,7 +118,12 @@ export function SignupForm() {
                           new Date().getDate(),
                         ),
                       }}
-                      defaultMonth={new Date(new Date().getFullYear() - 13, new Date().getMonth())}
+                      defaultMonth={
+                        new Date(
+                          new Date().getFullYear() - 13,
+                          new Date().getMonth(),
+                        )
+                      }
                       mode="single"
                       selected={field.value ?? undefined}
                       onSelect={(d) => field.onChange(d ?? null)}
@@ -114,7 +133,7 @@ export function SignupForm() {
                 </Popover>
 
                 {fieldState.invalid && (
-                  <FieldError errors={[fieldState.error]}/>
+                  <FieldError errors={[fieldState.error]} />
                 )}
               </Field>
             );
@@ -126,11 +145,11 @@ export function SignupForm() {
         <Controller
           name="email"
           control={control}
-          render={({field, fieldState}) => (
+          render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="email">{t("email_label")}</FieldLabel>
-              <Input {...field} id="email" aria-invalid={fieldState.invalid}/>
-              {fieldState.invalid && <FieldError errors={[fieldState.error]}/>}
+              <Input {...field} id="email" aria-invalid={fieldState.invalid} />
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />
@@ -138,7 +157,7 @@ export function SignupForm() {
         <Controller
           name="password"
           control={control}
-          render={({field, fieldState}) => (
+          render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
               <FieldLabel htmlFor="password">{t("password_label")}</FieldLabel>
               <Input
@@ -147,11 +166,13 @@ export function SignupForm() {
                 id="password"
                 aria-invalid={fieldState.invalid}
               />
-              {fieldState.invalid && <FieldError errors={[fieldState.error]}/>}
+              {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
           )}
         />
       </FieldGroup>
+
+      {error && <ErrorLabel text={t("errors.default")} />}
 
       <Field className={cn(!isValid && "cursor-not-allowed")}>
         <Button
@@ -159,11 +180,21 @@ export function SignupForm() {
           disabled={!isValid}
           className="tracking-wider transition-all ease-in-out duration-300 w-full enabled:cursor-pointer enabled:hover:bg-[#6EE7B7] enabled:bg-[#34D399]"
           type="submit"
+          isLoading={loading}
           form="signup-form"
         >
           {t("submit_button")}
         </Button>
       </Field>
+
+      <div className="text-center">
+        <span>
+          Já possui uma conta?{" "}
+          <Link href="/login">
+            <span className="underline">Faça login</span>
+          </Link>
+        </span>
+      </div>
     </form>
   );
 }

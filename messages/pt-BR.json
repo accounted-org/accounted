@@ -23,12 +23,21 @@
     "submit_button": "Enviar",
     "email_required": "E-mail é obrigatório.",
     "password_required": "Senha é obrigatória.",
+    "finish_button": "Continuar",
     "errors": {
       "email": {
         "invalid": "Por favor, insira um endereço de e-mail válido."
       },
       "password": {
         "required": "Senha é obrigatória."
+      },
+      "invalid_credentials": "Credenciais inválidas!"
+    },
+    "messages": {
+      "otp": {
+        "title": "Insira o código informado no seu aplicativo autenticador",
+        "qr_code_text": "Escaneie o QrCode com seu aplicativo autenticador",
+        "invalid_code": "Código inválido"
       }
     }
   },
@@ -51,7 +60,8 @@
       },
       "name": {
         "required": "Por favor nos diga seu nome."
-      }
+      },
+      "default": "Erro ao fazer login"
     }
   }
 }
