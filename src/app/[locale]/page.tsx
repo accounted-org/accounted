@@ -10,6 +10,7 @@ export default function Home() {
         <span>{t("title")}</span>
         <Link href="/transactions">Transactions page</Link>
         <Link href="/login">Login Page</Link>
+        <Link href="/reset-password">Redefinir senha page</Link>
       </div>
     </div>
   );

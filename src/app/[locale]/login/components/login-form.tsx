@@ -86,6 +86,14 @@ export function LoginForm({ onFinish }: Readonly<Props>) {
           )}
         />
 
+        <Field>
+          <Link href="/forgot-password">
+            <span className="text-end block hover:underline text-[#8B5CF6]">
+              {t("forgot_password")}
+            </span>
+          </Link>
+        </Field>
+
         <Field className={cn(!isValid && "cursor-not-allowed")}>
           <Button
             variant="default"

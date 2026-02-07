@@ -1,6 +1,12 @@
 import { api, useAuthStore } from "@/src/lib";
 import { useCallback, useState } from "react";
-import { GenerateMfaResponse, LoginDto, LoginResponse } from "./types";
+import {
+  ForgotPasswordPayload,
+  GenerateMfaResponse,
+  LoginPayload,
+  LoginResponse,
+  ResetPasswordPayload,
+} from "./types";
 
 export function useAuth() {
   const [loading, setLoading] = useState(false);
@@ -9,7 +15,7 @@ export function useAuth() {
     useAuthStore();
 
   const login = useCallback(
-    async (dto: LoginDto) => {
+    async (dto: LoginPayload) => {
       try {
         setError(false);
         setLoading(true);
@@ -61,6 +67,8 @@ export function useAuth() {
   const enableMfa = useCallback(
     async (code: string) => {
       try {
+        setLoading(true);
+        setError(false);
         await api.post("/mfa/enable", {
           tempToken,
           code,
@@ -68,6 +76,8 @@ export function useAuth() {
 
         return true;
       } catch {
+        setLoading(false);
+        setError(true);
         return false;
       }
     },
@@ -77,6 +87,9 @@ export function useAuth() {
   const verifyOtp = useCallback(
     async (code: string) => {
       try {
+        setLoading(true);
+        setError(false);
+
         const response = await api.post("/auth/signin/step-two", {
           tempToken,
           code,
@@ -86,22 +99,54 @@ export function useAuth() {
           data: { accessToken },
         } = response.data;
 
-        console.log(accessToken);
-
         setAccessToken(accessToken);
 
         return true;
       } catch {
+        setLoading(false);
+        setError(true);
         return false;
       }
     },
     [setAccessToken, tempToken],
   );
 
+  const resetPassword = useCallback(async (payload: ResetPasswordPayload) => {
+    try {
+      setLoading(true);
+      setError(false);
+      await api.post("/auth/reset-password", payload);
+      return true;
+    } catch {
+      setLoading(false);
+      setError(true);
+      return false;
+    }
+  }, []);
+
+  const requestForgotPassword = useCallback(
+    async (payload: ForgotPasswordPayload) => {
+      try {
+        setLoading(true);
+        setError(false);
+
+        await api.post("/auth/forgot-password", payload);
+        return true;
+      } catch {
+        setLoading(false);
+        setError(true);
+        return false;
+      }
+    },
+    [],
+  );
+
   return {
     login,
     enableMfa,
     verifyOtp,
+    resetPassword,
+    requestForgotPassword,
     loading,
     error,
   };

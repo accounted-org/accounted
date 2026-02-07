@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/input-otp";
 import { ErrorLabel } from "@/src/components";
 import { Button } from "@/src/components/ui/button";
+import { useAuth } from "@/src/hooks";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
 import { CircleArrowRight } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -22,6 +23,7 @@ export function OTPForm({ onFinish, error }: Readonly<Props>) {
   const [code, setCode] = useState("");
   const t = useTranslations("login");
   const invalid: AriaAttributes["aria-invalid"] = error ? "true" : "false";
+  const { loading } = useAuth();
 
   return (
     <div className="flex flex-col items-center justify-between gap-2 h-full">
@@ -52,6 +54,7 @@ export function OTPForm({ onFinish, error }: Readonly<Props>) {
         onClick={() => onFinish(code)}
         disabled={code.length < codeLenght}
         className="cursor-pointer w-full"
+        isLoading={loading}
       >
         <span>{t("finish_button")}</span>
         <CircleArrowRight />
