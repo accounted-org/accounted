@@ -5,6 +5,7 @@ import { getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { routing } from "../../lib/i18n";
 import { notFound } from "next/navigation";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,6 +48,7 @@ export default async function RootLayout({
           <Header />
           {children}
           <Footer />
+          <Toaster />
         </Providers>
       </body>
     </html>
