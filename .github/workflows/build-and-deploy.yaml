@@ -33,7 +33,7 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/accounted-front:${{ vars.IMAGE_TAG }}
           build-args: |
-            NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }}
+            NEXT_PUBLIC_BASE_API_URL=${{ vars.NEXT_PUBLIC_BASE_API_URL }}
 
   deploy:
     needs: build
