@@ -44,5 +44,6 @@ jobs:
       - name: Deploy via SSH
         run: |
           cd ${{ vars.DEPLOY_PATH }}
-          docker compose -f docker-compose.app.yml pull
+          docker compose -f docker-compose.app.yml pull front
+          docker compose -f docker-compose.app.yml up -d front
           docker compose up -d
