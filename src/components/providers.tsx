@@ -1,4 +1,4 @@
-import { NextIntlClientProvider } from 'next-intl';
+import { NextIntlClientProvider } from "next-intl";
 
 export function Providers({
   children,

@@ -2,7 +2,7 @@ import {
   ExpenseTransaction,
   IncomeTransaction,
   Transaction,
-} from '@/src/@types';
+} from "@/src/@types";
 
 export type TransactionStoreActions = {
   setTransactions: (

@@ -15,5 +15,86 @@
     "source": "Fonte",
     "category": "Categoria",
     "no_transactions": "Nenhuma transação disponível."
+  },
+  "login": {
+    "title": "Faça login na sua conta",
+    "email_label": "E-mail",
+    "password_label": "Senha",
+    "submit_button": "Enviar",
+    "email_required": "E-mail é obrigatório.",
+    "password_required": "Senha é obrigatória.",
+    "finish_button": "Continuar",
+    "forgot_password": "Esqueci minha senha",
+    "errors": {
+      "email": {
+        "invalid": "Por favor, insira um endereço de e-mail válido."
+      },
+      "password": {
+        "required": "Senha é obrigatória."
+      },
+      "invalid_credentials": "Credenciais inválidas!"
+    },
+    "messages": {
+      "otp": {
+        "title": "Insira o código informado no seu aplicativo autenticador",
+        "qr_code_text": "Escaneie o QrCode com seu aplicativo autenticador",
+        "invalid_code": "Código inválido",
+        "success_otp": "Código verificado com sucesso!",
+        "success_mfa": "MFA habilitado com sucesso!"
+      }
+    }
+  },
+  "signup": {
+    "title": "Crie sua conta",
+    "email_label": "E-mail",
+    "name_label": "Nome completo",
+    "birthDate_label": "Data de nascimento",
+    "birthDate_placeholder": "Selecione a data",
+    "password_label": "Senha",
+    "submit_button": "Registrar",
+    "email_required": "E-mail é obrigatório.",
+    "password_required": "Senha é obrigatória.",
+    "errors": {
+      "email": {
+        "invalid": "Por favor, insira um endereço de e-mail válido."
+      },
+      "password": {
+        "required": "Senha é obrigatória."
+      },
+      "name": {
+        "required": "Por favor nos diga seu nome."
+      },
+      "default": "Erro ao fazer login"
+    }
+  },
+  "reset_password": {
+    "title": "Redefinir a senha",
+    "description": "A senha deve conter no mínimo 8 caracteres.",
+    "password_label": "Senha",
+    "submit_button": "Redefinir senha",
+    "checkbox": "Mostrar senha",
+    "errors": {
+      "password": {
+        "required": "Senha é obrigatória."
+      },
+      "server": "Ocorreu um erro ao processar a solicitação. Tente novamente mais tarde."
+    }
+  },
+  "forgot_password": {
+    "title": "Solicite a redefinição de senha",
+    "description": "Informe o e-mail associado a sua conta e enviamores instruções para redefinir sua senha.",
+    "email_label": "E-mail",
+    "errors": {
+      "email": {
+        "invalid": "Por favor, insira um endereço de e-mail válido."
+      },
+      "server": "Erro ao solicitar redefinição de senha. Tente novamente mais tarde"
+    },
+    "submit_button": "Solicitar alteração de senha"
+  },
+  "password_reset_sent": {
+    "title": "Pronto!",
+    "description": "Se o endereço de e-mail informado pertencer a alguma conta em nossa plataforma, você receberá instruções de como redefinir sua senha. Caso tenha se lembrado de sua senha, recomendados que faça login.",
+    "button": "Voltar para o login"
   }
 }
