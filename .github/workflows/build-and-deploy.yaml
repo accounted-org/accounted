@@ -1,8 +1,18 @@
-name: Build & Deploy
+name: Build & Deploy Front
 
 on:
   push:
-    branches: ["dev", "main"]
+    branches: [ "dev", "main" ]
+  workflow_dispatch:
+    inputs:
+      target_env:
+        description: "Choose the environment (dev | prod)"
+        required: false
+        type: choice
+        options:
+          - dev
+          - prod
+        default: dev
 
 permissions:
   contents: read
@@ -11,12 +21,10 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    environment: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
+    environment: ${{ github.event_name == 'workflow_dispatch' && inputs.target_env || (github.ref_name == 'main' && 'prod' || 'dev') }}
 
     steps:
       - uses: actions/checkout@v4
-
       - uses: docker/setup-buildx-action@v3
 
       - name: Login to GHCR
@@ -32,17 +40,34 @@ jobs:
           context: .
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/accounted-front:${{ vars.IMAGE_TAG }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
           build-args: |
             NEXT_PUBLIC_BASE_API_URL=${{ vars.NEXT_PUBLIC_BASE_API_URL }}
 
   deploy:
     needs: build
-    runs-on: [self-hosted, frontend]
-    environment: ${{ github.ref_name == 'main' && 'prod' || 'dev' }}
+    runs-on: ${{ github.event_name == 'workflow_dispatch' && inputs.target_env || (github.ref_name == 'main' && 'prod' || 'dev') }}
+    environment: ${{ github.event_name == 'workflow_dispatch' && inputs.target_env || (github.ref_name == 'main' && 'prod' || 'dev') }}
 
     steps:
-      - name: Deploy via SSH
+      - name: Login to GHCR on runner
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Deploy Front
         run: |
           cd ${{ vars.DEPLOY_PATH }}
-          docker compose pull
-          docker compose up -d
+          docker compose -f docker-compose.app.yml pull front
+          docker compose -f docker-compose.app.yml up -d front
+          docker image prune -f
+
+      - name: Health Check
+        run: |
+          sleep 5
+          curl -f http://localhost:3400 || echo "⚠️ Health check failed - check logs"
+
+      - name: Show logs (if failed)
+        if: failure()
+        run: |
+          cd ${{ vars.DEPLOY_PATH }}
+          docker logs front --tail 50
