@@ -1,7 +1,7 @@
 {
   "language_selector": {
-    "title": "Change Language",
-    "pt": "Português",
+    "title": "Change language",
+    "pt": "Portuguese",
     "en": "English"
   },
   "home": {
@@ -19,36 +19,48 @@
   },
   "transactions": {
     "title": "Transactions",
-    "value": "Amount",
+    "amount": "Amount",
     "date": "Date",
     "source": "Source",
     "category": "Category",
     "no_transactions": "No transactions available."
   },
   "login": {
-    "title": "Login to Your Account",
+    "title": "Sign in to your account",
     "email_label": "Email",
     "password_label": "Password",
     "submit_button": "Login",
     "email_required": "Email is required.",
     "password_required": "Password is required.",
+    "finish_button": "Continue",
+    "forgot_password": "Forgot my password",
     "errors": {
       "email": {
         "invalid": "Please enter a valid email address."
       },
       "password": {
         "required": "Password is required."
+      },
+      "invalid_credentials": "Invalid credentials!"
+    },
+    "messages": {
+      "otp": {
+        "title": "Enter the code provided by your authenticator app",
+        "qr_code_text": "Scan the QR code with your authenticator app",
+        "invalid_code": "Invalid code",
+        "success_otp": "Code successfully verified!",
+        "success_mfa": "MFA successfully enabled!"
       }
     }
   },
   "signup": {
-    "title": "Sign Up",
+    "title": "Create your account",
     "email_label": "Email",
-    "name_label": "Name",
-    "birthDate_label": "Birth date",
+    "name_label": "Full name",
+    "birthDate_label": "Date of birth",
     "birthDate_placeholder": "Select a date",
     "password_label": "Password",
-    "submit_button": "Register",
+    "submit_button": "Sign up",
     "email_required": "Email is required.",
     "password_required": "Password is required.",
     "errors": {
@@ -60,7 +72,38 @@
       },
       "name": {
         "required": "Please tell us your name."
-      }
+      },
+      "default": "Error while signing in"
     }
+  },
+  "reset_password": {
+    "title": "Reset password",
+    "description": "Password must contain at least 8 characters.",
+    "password_label": "Password",
+    "submit_button": "Reset password",
+    "checkbox": "Show password",
+    "errors": {
+      "password": {
+        "required": "Password is required."
+      },
+      "server": "An error occurred while processing your request. Please try again later."
+    }
+  },
+  "forgot_password": {
+    "title": "Request password reset",
+    "description": "Enter the email associated with your account and we will send instructions to reset your password.",
+    "email_label": "Email",
+    "errors": {
+      "email": {
+        "invalid": "Please enter a valid email address."
+      },
+      "server": "Error requesting password reset. Please try again later."
+    },
+    "submit_button": "Request password change"
+  },
+  "password_reset_sent": {
+    "title": "All set!",
+    "description": "If the provided email address belongs to an account on our platform, you will receive instructions on how to reset your password. If you remember your password, we recommend signing in.",
+    "button": "Back to login"
   }
 }

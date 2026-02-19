@@ -1,14 +1,23 @@
-export type LoginDto = {
-  email: string
-  password: string
-}
+export type LoginPayload = {
+  email: string;
+  password: string;
+};
 
 export type LoginResponse = {
-  mfaEnabled: true
-  tempToken: string
-}
+  mfaEnabled: true;
+  tempToken: string;
+};
 
 export type GenerateMfaResponse = {
-  manualCode: string
-  qrCode: string
-}
+  manualCode: string;
+  qrCode: string;
+};
+
+export type ResetPasswordPayload = {
+  newPassword: string;
+  token: string | null;
+};
+
+export type ForgotPasswordPayload = {
+  email: string;
+};
