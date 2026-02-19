@@ -4,20 +4,20 @@ import { motion } from 'framer-motion'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import {
-  Menu,
-  MenuGroup,
-  MenuGroupLabel,
-  MenuItem,
-  MenuPopup,
-  MenuTrigger,
-} from '@/components/ui/menu'
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 import { useCallback } from 'react'
 import { usePathname, useRouter } from '@/lib'
 import { Locales } from '@/constants'
 import { useLocale } from 'next-intl'
 import { cn } from '@/lib/utils'
 import { ChevronDown } from 'lucide-react'
-import {TypingAnimation} from "@/components/ui/typing-animation";
+import { TypingAnimation } from '@/components/ui/typing-animation'
 
 export function Header() {
   const t = useTranslations('home.header')
@@ -54,19 +54,17 @@ export function Header() {
       </div>
 
       <div className="flex items-end space-x-6">
-        <span className="p-1 text-sm">Pricing</span>
-        <span className="p-1 text-sm">Sobre</span>
-        <span className="p-1 text-sm">Suporte</span>
+        <span className="p-1 text-sm font-medium cursor-pointer text-muted-foreground hover:text-black/80">Pricing</span>
 
-        <Menu>
-          <MenuTrigger className="text-sm flex text-center text-main-foreground cursor-pointer font-bold">
+        <DropdownMenu>
+          <DropdownMenuTrigger className="text-sm flex text-center text-main-foreground cursor-pointer font-bold">
             {locale === Locales.PT_BR ? l('pt') : l('en')} <ChevronDown />
-          </MenuTrigger>
+          </DropdownMenuTrigger>
 
-          <MenuPopup align="center" sideOffset={4}>
-            <MenuGroup>
-              <MenuGroupLabel>{l('title')} </MenuGroupLabel>
-              <MenuItem
+          <DropdownMenuContent align="center" sideOffset={4}>
+            <DropdownMenuGroup className='font-medium'>
+              <DropdownMenuLabel>{l('title')} </DropdownMenuLabel>
+              <DropdownMenuItem
                 onClick={() => handleChangeLanguage(Locales.PT_BR)}
                 className={cn(
                   'text-xs',
@@ -75,8 +73,8 @@ export function Header() {
                 disabled={locale === Locales.PT_BR}
               >
                 {l('pt')}
-              </MenuItem>
-              <MenuItem
+              </DropdownMenuItem>
+              <DropdownMenuItem
                 onClick={() => handleChangeLanguage(Locales.EN_US)}
                 className={cn(
                   'text-xs',
@@ -85,10 +83,10 @@ export function Header() {
                 disabled={locale === Locales.EN_US}
               >
                 {l('en')}
-              </MenuItem>
-            </MenuGroup>
-          </MenuPopup>
-        </Menu>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
         <Button className="ml-5 bg-white text-sub font-bold shadow-[0px_4px_6px_0px_rgba(0,_0,_0,_0.1)] cursor-pointer hover:bg-main/5 hover:text-sub-foreground transition-all ease-in-out duration-200">
           {t('sessionButton')}
         </Button>

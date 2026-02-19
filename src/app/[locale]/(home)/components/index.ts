@@ -1,4 +1,4 @@
 export { Header } from './header'
-export * from './feature-section'
-export * from './footer'
-export * from './hero-section'
+export { FeatureSection } from './feature-section'
+export { Footer } from './footer'
+export { HeroSection } from './hero-section'

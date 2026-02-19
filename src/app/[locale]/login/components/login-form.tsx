@@ -101,8 +101,6 @@ export function LoginForm({ onFinish }: Readonly<Props>) {
             className="tracking-wider transition-all ease-in-out duration-300 w-full enabled:cursor-pointer enabled:hover:bg-[#A66CFF] enabled:bg-[#8B5CF6]"
             type="submit"
             form="signin-form"
-            isLoading={loading}
-            loaderColor="#fff"
           >
             {t("submit_button")}
           </Button>
