@@ -1,5 +1,5 @@
 interface Props {
-  text: string;
+  text: string
 }
 
 export function ErrorLabel({ text }: Readonly<Props>) {
@@ -7,5 +7,5 @@ export function ErrorLabel({ text }: Readonly<Props>) {
     <span className="w-full block font-semibold text-center text-red-400 italic text-sm">
       {text}
     </span>
-  );
+  )
 }

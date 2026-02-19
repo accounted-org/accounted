@@ -5,7 +5,16 @@
     "en": "English"
   },
   "home": {
-    "title": "Welcome to Accounted",
+    "header": {
+      "logoTexts": {
+        "finances": "Finances",
+        "control": "Control",
+        "future": "Future",
+        "forecast": "Forecasts",
+        "economy": "Economy"
+      },
+      "sessionButton": "Login"
+    },
     "meta_description": "Your personal finance manager."
   },
   "transactions": {
@@ -20,7 +29,7 @@
     "title": "Login to Your Account",
     "email_label": "Email",
     "password_label": "Password",
-    "submit_button": "Submit",
+    "submit_button": "Login",
     "email_required": "Email is required.",
     "password_required": "Password is required.",
     "errors": {

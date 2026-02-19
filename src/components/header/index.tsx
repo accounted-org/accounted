@@ -1,4 +1,4 @@
-import { LanguageSelector } from "../language-selector";
+import { LanguageSelector } from '../language-selector'
 
 export function Header() {
   return (
@@ -10,5 +10,5 @@ export function Header() {
         <LanguageSelector />
       </div>
     </header>
-  );
+  )
 }

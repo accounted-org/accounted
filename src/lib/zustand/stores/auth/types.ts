@@ -1,23 +1,23 @@
-import { User } from "@/src/@types";
+import { User } from '@/src/@types'
 
 export type AuthStoreActions = {
-  setUser: (user: User) => void;
-  setQrCodeData: (url: string, manualCode: string) => void;
-  setTempToken: (token: string) => void;
-  clearMfa: () => void;
-  logout: () => void;
-  setAccessToken: (accessToken: string) => void;
-};
+  setUser: (user: User) => void
+  setQrCodeData: (url: string, manualCode: string) => void
+  setTempToken: (token: string) => void
+  clearMfa: () => void
+  logout: () => void
+  setAccessToken: (accessToken: string) => void
+}
 
 export type AuthStoreState = {
-  user: User | null;
-  isAuthenticated: boolean;
-  tempToken: string | null;
-  accessToken: string | null;
+  user: User | null
+  isAuthenticated: boolean
+  tempToken: string | null
+  accessToken: string | null
   qrCode: {
-    url: string;
-    manualCode: string;
-  };
-};
+    url: string
+    manualCode: string
+  }
+}
 
-export type AuthStore = AuthStoreState & AuthStoreActions;
+export type AuthStore = AuthStoreState & AuthStoreActions

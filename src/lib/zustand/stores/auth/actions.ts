@@ -1,9 +1,9 @@
-import { GetFunction, SetFunction } from "../../common";
-import { AuthStore, AuthStoreActions } from "./types";
+import { GetFunction, SetFunction } from '../../common'
+import { AuthStore, AuthStoreActions } from './types'
 
 export const authActions = (
   set: SetFunction<AuthStore>,
-  get: GetFunction<AuthStore>,
+  get: GetFunction<AuthStore>
 ): AuthStoreActions => ({
   clearMfa: () => set({ tempToken: null }),
   logout: () =>
@@ -24,4 +24,4 @@ export const authActions = (
     }),
   setQrCodeData: (url, manualCode) => set({ qrCode: { url, manualCode } }),
   setAccessToken: (accessToken) => set({ accessToken }),
-});
+})

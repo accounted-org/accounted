@@ -5,7 +5,16 @@
     "en": "Inglês"
   },
   "home": {
-    "title": "Bem-vindo ao Accounted",
+    "header": {
+      "logoTexts": {
+        "finances": "Finanças",
+        "control": "Controle",
+        "future": "Futuro",
+        "forecast": "Previsões",
+        "economy": "Economia"
+      },
+      "sessionButton": "Entrar"
+    },
     "meta_description": "Seu gerenciador de finanças pessoais."
   },
   "transactions": {
@@ -20,7 +29,7 @@
     "title": "Faça login na sua conta",
     "email_label": "E-mail",
     "password_label": "Senha",
-    "submit_button": "Enviar",
+    "submit_button": "Entrar",
     "email_required": "E-mail é obrigatório.",
     "password_required": "Senha é obrigatória.",
     "finish_button": "Continuar",

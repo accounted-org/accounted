@@ -1,7 +1,7 @@
-import { NextIntlClientProvider } from "next-intl";
+import { NextIntlClientProvider } from 'next-intl'
 
 export function Providers({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return <NextIntlClientProvider>{children}</NextIntlClientProvider>;
+  return <NextIntlClientProvider>{children}</NextIntlClientProvider>
 }

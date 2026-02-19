@@ -1,7 +1,7 @@
 export async function copy2Clipboard(text: string, fallback?: () => void) {
   if (!navigator.clipboard) {
-    return fallback?.();
+    return fallback?.()
   }
 
-  await navigator.clipboard.writeText(text);
+  await navigator.clipboard.writeText(text)
 }

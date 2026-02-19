@@ -2,16 +2,16 @@ import {
   ExpenseTransaction,
   IncomeTransaction,
   Transaction,
-} from "@/src/@types";
+} from '@/src/@types'
 
 export type TransactionStoreActions = {
   setTransactions: (
-    transactions: (IncomeTransaction | ExpenseTransaction)[],
-  ) => void;
-};
+    transactions: (IncomeTransaction | ExpenseTransaction)[]
+  ) => void
+}
 
 export type TransactionStoreState = {
-  transactions: Transaction[];
-};
+  transactions: Transaction[]
+}
 
-export type TransactionStore = TransactionStoreState & TransactionStoreActions;
+export type TransactionStore = TransactionStoreState & TransactionStoreActions
