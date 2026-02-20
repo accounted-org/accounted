@@ -102,7 +102,6 @@ export function LoginForm({ onFinish }: Readonly<Props>) {
             type="submit"
             form="signin-form"
             isLoading={loading}
-            loaderColor="#fff"
           >
             {t("submit_button")}
           </Button>

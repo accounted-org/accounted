@@ -1,7 +1,7 @@
-import { createStore, useStore } from "zustand";
+import { createStore, useStore } from 'zustand'
 
-import { AuthStore } from "./types";
-import { authActions } from "./actions";
+import { AuthStore } from './types'
+import { authActions } from './actions'
 
 export const authStore = createStore<AuthStore>((set, get) => ({
   user: null,
@@ -9,13 +9,13 @@ export const authStore = createStore<AuthStore>((set, get) => ({
   tempToken: null,
   accessToken: null,
   qrCode: {
-    url: "",
-    manualCode: "",
+    url: '',
+    manualCode: '',
   },
 
   ...authActions(set, get),
-}));
+}))
 
 export function useAuthStore() {
-  return useStore(authStore);
+  return useStore(authStore)
 }

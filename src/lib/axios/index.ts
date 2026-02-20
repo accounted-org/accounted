@@ -1,20 +1,20 @@
-import axios from "axios";
-import { authStore } from "../zustand";
+import axios from 'axios'
+import { authStore } from '../zustand'
 
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_API_URL ?? '/api/v1',
   withCredentials: true,
-});
+})
 
 api.interceptors.request.use((config) => {
-  const token = authStore.getState().accessToken;
+  const token = authStore.getState().accessToken
 
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers.Authorization = `Bearer ${token}`
   }
 
-  return config;
-});
+  return config
+})
 
 api.interceptors.response.use(
   (response) => response,
@@ -24,8 +24,8 @@ api.interceptors.response.use(
       // redirecionar para o login
       // window.location.href = '/login';
     }
-    return Promise.reject(error);
-  },
-);
+    return Promise.reject(error)
+  }
+)
 
-export { api };
+export { api }

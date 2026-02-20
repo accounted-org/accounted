@@ -1,6 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
-import { Footer, Header, Providers } from "../../components";
+import { Providers } from "../../components";
 import { getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { routing } from "../../lib/i18n";
@@ -45,9 +45,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers>
-          <Header />
           {children}
-          <Footer />
           <Toaster />
         </Providers>
       </body>

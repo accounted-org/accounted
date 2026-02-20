@@ -1,42 +1,42 @@
-"use client";
+'use client'
 
-import { SignupSchemaData, createSignupSchema } from "@/src/lib";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslations } from "next-intl";
-import { useCallback, useMemo } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { SignupSchemaData, createSignupSchema } from '@/src/lib'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslations } from 'next-intl'
+import { useCallback, useMemo } from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import { Input } from '@/components/ui/input'
+import { Button } from '@/components/ui/button'
 import {
   Field,
   FieldError,
   FieldGroup,
   FieldLabel,
-} from "@/components/ui/field";
-import { Calendar } from "@/components/ui/calendar";
+} from '@/components/ui/field'
+import { Calendar } from '@/components/ui/calendar'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { cn } from "@/src/lib/utils";
-import { ptBR, enUS } from "date-fns/locale";
-import { useLocale } from "next-intl";
-import Link from "next/link";
-import { useRegister } from "@/src/hooks";
-import { useRouter } from "next/navigation";
-import { ErrorLabel } from "@/src/components";
+} from '@/components/ui/popover'
+import { cn } from '@/src/lib/utils'
+import { ptBR, enUS } from 'date-fns/locale'
+import { useLocale } from 'next-intl'
+import Link from 'next/link'
+import { useRegister } from '@/src/hooks'
+import { useRouter } from 'next/navigation'
+import { ErrorLabel } from '@/src/components'
 
 export function SignupForm() {
-  const t = useTranslations("signup");
-  const locale = useLocale();
-  const { register, loading, error } = useRegister();
-  const router = useRouter();
+  const t = useTranslations('signup')
+  const locale = useLocale()
+  const { register, loading, error } = useRegister()
+  const router = useRouter()
 
   const calendarLocale = useMemo(() => {
-    if (locale.toLowerCase().startsWith("pt")) return ptBR;
-    return enUS;
-  }, [locale]);
+    if (locale.toLowerCase().startsWith('pt')) return ptBR
+    return enUS
+  }, [locale])
 
   const {
     control,
@@ -45,24 +45,24 @@ export function SignupForm() {
   } = useForm<SignupSchemaData>({
     resolver: zodResolver(createSignupSchema(t)),
     defaultValues: {
-      password: "",
-      email: "",
-      name: "",
+      password: '',
+      email: '',
+      name: '',
       birthDate: undefined,
     },
-  });
+  })
 
   const onSubmit = useCallback(
     async (data: SignupSchemaData) => {
-      const succcess = await register(data);
+      const succcess = await register(data)
       if (!succcess) {
-        return;
+        return
       }
 
-      router.push("login");
+      router.push('login')
     },
-    [register, router],
-  );
+    [register, router]
+  )
 
   return (
     <form
@@ -76,7 +76,7 @@ export function SignupForm() {
           control={control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="name">{t("name_label")}</FieldLabel>
+              <FieldLabel htmlFor="name">{t('name_label')}</FieldLabel>
               <Input {...field} id="name" aria-invalid={fieldState.invalid} />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
@@ -90,7 +90,7 @@ export function SignupForm() {
             return (
               <Field data-invalid={fieldState.invalid}>
                 <FieldLabel htmlFor="birthDate">
-                  {t("birthDate_label")}
+                  {t('birthDate_label')}
                 </FieldLabel>
 
                 <Popover>
@@ -100,8 +100,8 @@ export function SignupForm() {
                       className="w-full justify-start font-normal"
                     >
                       {field.value
-                        ? new Date(field.value).toLocaleDateString("pt-BR")
-                        : t("birthDate_placeholder")}
+                        ? new Date(field.value).toLocaleDateString('pt-BR')
+                        : t('birthDate_placeholder')}
                     </Button>
                   </PopoverTrigger>
 
@@ -115,13 +115,13 @@ export function SignupForm() {
                         after: new Date(
                           new Date().getFullYear() - 13,
                           new Date().getMonth(),
-                          new Date().getDate(),
+                          new Date().getDate()
                         ),
                       }}
                       defaultMonth={
                         new Date(
                           new Date().getFullYear() - 13,
-                          new Date().getMonth(),
+                          new Date().getMonth()
                         )
                       }
                       mode="single"
@@ -136,7 +136,7 @@ export function SignupForm() {
                   <FieldError errors={[fieldState.error]} />
                 )}
               </Field>
-            );
+            )
           }}
         />
       </FieldGroup>
@@ -147,7 +147,7 @@ export function SignupForm() {
           control={control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="email">{t("email_label")}</FieldLabel>
+              <FieldLabel htmlFor="email">{t('email_label')}</FieldLabel>
               <Input {...field} id="email" aria-invalid={fieldState.invalid} />
               {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
             </Field>
@@ -159,7 +159,7 @@ export function SignupForm() {
           control={control}
           render={({ field, fieldState }) => (
             <Field data-invalid={fieldState.invalid}>
-              <FieldLabel htmlFor="password">{t("password_label")}</FieldLabel>
+              <FieldLabel htmlFor="password">{t('password_label')}</FieldLabel>
               <Input
                 type="password"
                 {...field}
@@ -172,29 +172,29 @@ export function SignupForm() {
         />
       </FieldGroup>
 
-      {error && <ErrorLabel text={t("errors.default")} />}
+      {error && <ErrorLabel text={t('errors.default')} />}
 
-      <Field className={cn(!isValid && "cursor-not-allowed")}>
+      <Field className={cn(!isValid && 'cursor-not-allowed')}>
         <Button
           variant="default"
           disabled={!isValid}
-          className="tracking-wider transition-all ease-in-out duration-300 w-full enabled:cursor-pointer enabled:hover:bg-[#6EE7B7] enabled:bg-[#34D399]"
+          className="tracking-wider transition-all ease-in-out duration-300 w-full enabled:cursor-pointer enabled:hover:bg-main enabled:bg-main-foreground"
           type="submit"
           isLoading={loading}
           form="signup-form"
         >
-          {t("submit_button")}
+          {t('submit_button')}
         </Button>
       </Field>
 
       <div className="text-center">
         <span>
-          Já possui uma conta?{" "}
+          Já possui uma conta?{' '}
           <Link href="/login">
             <span className="underline">Faça login</span>
           </Link>
         </span>
       </div>
     </form>
-  );
+  )
 }

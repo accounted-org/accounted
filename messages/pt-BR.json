@@ -5,8 +5,131 @@
     "en": "Inglês"
   },
   "home": {
-    "title": "Bem-vindo ao Accounted",
-    "meta_description": "Seu gerenciador de finanças pessoais."
+    "header": {
+      "logo_texts": {
+        "finances": "Finanças",
+        "control": "Controle",
+        "future": "Futuro",
+        "forecast": "Previsões",
+        "economy": "Economia"
+      },
+      "pricing": "Preços",
+      "session_button": "Entrar"
+    },
+    "meta_description": "Seu gerenciador de finanças pessoais.",
+    "footer": {
+      "privacy_policy": "Política de privacidade",
+      "service_terms": "Termos de Serviço"
+    },
+    "hero_section": {
+      "title": "O jeito inteligente de cuidar de suas <g>finanças</g>",
+      "subtitle": "Suas contas, seu futuro, seu controle, tudo em um único lugar",
+      "button": "Comece já",
+      "budget_card": {
+        "title": "Seu espaço",
+        "avatar": "Marcos",
+        "description": "Uso do orçamento chegou a 100%",
+        "avatar_spend": "Seu gasto",
+        "details_hover_card": {
+          "spent": "Gasto"
+        }
+      },
+      "totals": {
+        "metrics_data": {
+          "spent_change": "Mudança nos gastos",
+          "remaining_budget": "Orçamento restante",
+          "daily_spend": "Gasto diário"
+        },
+        "budget_chart": {
+          "title": "Comparação de Gastos Diários",
+          "hover_description": "Passe o mouse sobre o gráfico para ver detalhes dos gastos por dia",
+          "chart_config": {
+            "current_month": "Este mês",
+            "last_month": "Mês anterior",
+            "day": "Dia"
+          }
+        }
+      }
+    },
+    "feature_section": {
+      "title": "Veja o que realmente impacta suas finanças",
+      "subtitle": "Identifique excessos, oportunidades de economia e onde ajustar seu orçamento.",
+      "data": {
+        "mark": "Marcos",
+        "mom": "Mãe",
+        "dad": "Pai",
+        "daughter": "Filha",
+        "son": "Filho",
+        "brother": "Irmão",
+        "top_category": {
+          "business": "Negócios",
+          "shopping": "Compras",
+          "internet": "Internet",
+          "vehicle": "Veículo",
+          "home": "Casa"
+        }
+      },
+      "main_features": {
+        "title": "Principais funcionalidades",
+        "subtitle": "Nossos serviços minimos garantidos",
+        "feature_spotlight": [
+          "Previsão de saldo",
+          "Alertas de gastos",
+          "Metas financeiras",
+          "Relatórios claros",
+          "Organização financeira"
+        ],
+        "features_list": {
+          "forecast": "Veja <g>gastos</g> e <p>previsões</p> em um único lugar.",
+          "financial_health": "Aumento da sua saúde financeira",
+          "savings": "economizados no último mês",
+          "financial_life": "Entenda sua vida financeira em <g>segundos</g>"
+        }
+      },
+      "real_time_monitoring": {
+        "title": "Acompanhamento em tempo real",
+        "top_spend_categories": {
+          "title": "Categorias com mais gasto",
+          "subtitle": "Conheça o vilão do seu mês",
+          "categories": {
+            "business": "Negócios",
+            "vehicle": "Veículo",
+            "shopping": "Compras"
+          },
+          "places": {
+            "supplies": "Insumos",
+            "projects": "Projetos",
+            "gas_station": "posto de gasolina",
+            "parts": "peças",
+            "clothes": "Zara"
+          },
+          "debit": "Débito",
+          "card": "Cartão 01"
+        },
+        "comparison_radar": {
+          "title": "Gastos por categoria",
+          "subtitle": "Comparação entre este mês e o mês anterior",
+          "description": "Em comparação com o mês anterior",
+          "chart_config": {
+            "current_month": "Este mês",
+            "last_month": "Mês anterior"
+          }
+        }
+      },
+      "pricing": {
+        "title": "Preços",
+        "subtitle": "Que tipo de economizador você é?",
+        "free_plan": "Grátis",
+        "period": {
+          "month": "Mensal",
+          "year": "Anual",
+          "abbr_month": "mês",
+          "abbr_year": "ano"
+        },
+        "yearly_plan_description": "Nesse plano você paga <price>{value}</price> por mês.",
+        "button": "Assine já"
+      }
+    }
   },
   "transactions": {
     "title": "Transações",
@@ -20,7 +143,7 @@
     "title": "Faça login na sua conta",
     "email_label": "E-mail",
     "password_label": "Senha",
-    "submit_button": "Enviar",
+    "submit_button": "Entrar",
     "email_required": "E-mail é obrigatório.",
     "password_required": "Senha é obrigatória.",
     "finish_button": "Continuar",

@@ -1,2 +1,2 @@
-export * from "./use-auth";
-export * from "./use-register";
+export * from './use-auth'
+export * from './use-register'
