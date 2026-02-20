@@ -6,7 +6,7 @@
   },
   "home": {
     "header": {
-      "logoTexts": {
+      "logo_texts": {
         "finances": "Finances",
         "control": "Control",
         "future": "Future",
@@ -14,7 +14,7 @@
         "economy": "Economy"
       },
       "pricing": "Pricing",
-      "sessionButton": "Login"
+      "session_button": "Login"
     },
     "meta_description": "Your personal finance manager.",
     "footer": {

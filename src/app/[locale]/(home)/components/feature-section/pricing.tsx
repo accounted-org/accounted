@@ -19,6 +19,7 @@ import {
 import { cn } from '@/lib/utils'
 import {useLocale, useTranslations} from 'next-intl'
 import { Locales } from '@/constants'
+import Link from "next/link";
 
 interface Plan {
   id: string
@@ -220,10 +221,10 @@ export default function Pricing() {
                         </ul>
                       </CardContent>
                       <CardFooter className="mt-auto">
-                        <Button asChild className="w-full">
-                          <a href="/" target="_blank">
+                        <Button className="w-full">
+                          <Link href='/' target='_blank' className="w-full">
                             {t('button')}
-                          </a>
+                          </Link>
                         </Button>
                       </CardFooter>
                     </Card>

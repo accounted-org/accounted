@@ -42,11 +42,11 @@ export function Header() {
 
   const logoTexts = [
     'Accounted',
-    t('logoTexts.finances'),
-    t('logoTexts.control'),
-    t('logoTexts.future'),
-    t('logoTexts.forecast'),
-    t('logoTexts.economy'),
+    t('logo_texts.finances'),
+    t('logo_texts.control'),
+    t('logo_texts.future'),
+    t('logo_texts.forecast'),
+    t('logo_texts.economy'),
   ]
 
   return (
@@ -100,7 +100,7 @@ export function Header() {
           </DropdownMenuContent>
         </DropdownMenu>
         <Button className="ml-5 bg-white text-sub font-bold shadow-[0px_4px_6px_0px_rgba(0,_0,_0,_0.1)] cursor-pointer hover:bg-main/5 hover:text-sub-foreground transition-all ease-in-out duration-200">
-          {t('sessionButton')}
+          {t('session_button')}
         </Button>
       </div>
     </header>

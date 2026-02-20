@@ -6,7 +6,7 @@
   },
   "home": {
     "header": {
-      "logoTexts": {
+      "logo_texts": {
         "finances": "Finanças",
         "control": "Controle",
         "future": "Futuro",
@@ -14,7 +14,7 @@
         "economy": "Economia"
       },
       "pricing": "Preços",
-      "sessionButton": "Entrar"
+      "session_button": "Entrar"
     },
     "meta_description": "Seu gerenciador de finanças pessoais.",
     "footer": {

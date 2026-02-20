@@ -1,35 +1,38 @@
-import React, { ReactNode, useState } from 'react'
-import { motion, useMotionValue, useTransform } from 'motion/react'
-import {fadeInUp} from "@/app/[locale]/(home)/components/utils";
+import React, { ReactNode, useCallback, useState } from 'react';
+import { motion, useMotionValue, useTransform } from 'motion/react';
+import { fadeInUp } from '@/app/[locale]/(home)/components/utils';
 
 interface FeatureItemProps {
-  children: ReactNode
+  children: ReactNode;
 }
 
 export default function FeatureItem({ children }: FeatureItemProps) {
-  const [isHovered, setIsHovered] = useState(false)
-  const x = useMotionValue(0)
-  const y = useMotionValue(0)
-  const rotateX = useTransform(y, [-100, 100], [2, -2])
-  const rotateY = useTransform(x, [-100, 100], [-2, 2])
+  const [isHovered, setIsHovered] = useState(false);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const rotateX = useTransform(y, [-100, 100], [2, -2]);
+  const rotateY = useTransform(x, [-100, 100], [-2, 2]);
 
-  function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
-    const rect = event.currentTarget.getBoundingClientRect()
-    const width = rect.width
-    const height = rect.height
-    const mouseX = event.clientX - rect.left
-    const mouseY = event.clientY - rect.top
-    const xPct = mouseX / width - 0.5
-    const yPct = mouseY / height - 0.5
-    x.set(xPct * 100)
-    y.set(yPct * 100)
-  }
+  const handleMouseMove = useCallback(
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      const rect = event.currentTarget.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height;
+      const mouseX = event.clientX - rect.left;
+      const mouseY = event.clientY - rect.top;
+      const xPct = mouseX / width - 0.5;
+      const yPct = mouseY / height - 0.5;
+      x.set(xPct * 100);
+      y.set(yPct * 100);
+    },
+    []
+  );
 
-  function handleMouseLeave() {
-    x.set(0)
-    y.set(0)
-    setIsHovered(false)
-  }
+  const handleMouseLeave = useCallback(() => {
+    x.set(0);
+    y.set(0);
+    setIsHovered(false);
+  }, []);
 
   return (
     <motion.div
@@ -58,5 +61,5 @@ export default function FeatureItem({ children }: FeatureItemProps) {
         </div>
       </div>
     </motion.div>
-  )
+  );
 }
