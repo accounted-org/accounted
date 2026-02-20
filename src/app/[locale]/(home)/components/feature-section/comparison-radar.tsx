@@ -15,18 +15,21 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { TrendingDown, TrendingUp } from 'lucide-react'
-import {compareCategoriesMonthOverMonth} from "@/app/[locale]/(home)/components/utils";
+import { compareCategoriesMonthOverMonth } from '@/app/[locale]/(home)/components/utils'
+import { useTranslations } from 'next-intl'
 
 export default function ComparisonRadar() {
+  const d = useTranslations()
+  const t = useTranslations('home.feature_section.real_time_monitoring.comparison_radar')
   {
     const [paused, setPaused] = useState(false)
     const chartConfig = {
       current: {
-        label: 'Este mês',
+        label: t('chart_config.current_month'),
         color: 'var(--sub)',
       },
       last: {
-        label: 'Mês anterior',
+        label: t('chart_config.last_month'),
         color: 'var(--main-foreground)',
       },
     } satisfies ChartConfig
@@ -47,7 +50,7 @@ export default function ComparisonRadar() {
               item.month.getFullYear() === monthRef.getFullYear()
           )
           .reduce<Record<string, number>>((acc, item) => {
-            acc[item.category] = (acc[item.category] ?? 0) + item.spend
+            acc[d(item.category)] = (acc[d(item.category)] ?? 0) + item.spend
             return acc
           }, {})
       }
@@ -76,15 +79,15 @@ export default function ComparisonRadar() {
       <div className="flex h-full p-4">
         <div className="w-full max-w-[420px] aspect-square flex flex-col items-center">
           <div className="mb-2 text-center">
-            <h3 className="text-lg font-semibold">Gastos por categoria</h3>
+            <h3 className="text-lg font-semibold">{t('title')}</h3>
             <p className="text-sm text-muted-foreground">
-              Comparação entre este mês e o mês anterior
+              {t('subtitle')}
             </p>
           </div>
           <ChartContainer className="w-full h-full" config={chartConfig}>
             <RadarChart
               data={radarData}
-              margin={{ top: 24, right: 24, bottom: 24, left: 24 }} // ✅ EDIT
+              margin={{ top: 24, right: 24, bottom: 24, left: 24 }}
             >
               <ChartTooltip content={<ChartTooltipContent />} cursor={false} />
               <PolarAngleAxis dataKey="category" />
@@ -105,7 +108,7 @@ export default function ComparisonRadar() {
 
               <Legend
                 formatter={(value) =>
-                  value === 'current' ? 'Este mês' : 'Mês anterior'
+                  value === 'current' ? t('chart_config.current_month') : t('chart_config.last_month')
                 }
               />
             </RadarChart>
@@ -123,7 +126,7 @@ export default function ComparisonRadar() {
               data-paused={paused}
             >
               {diffs.map((diff) => (
-                <Tooltip key={diff.category}>
+                <Tooltip key={d(diff.category)}>
                   <TooltipTrigger>
                     <div className="select-none ml-2 flex gap-1 items-center">
                       <span
@@ -134,7 +137,7 @@ export default function ComparisonRadar() {
                             : 'text-main-foreground'
                         )}
                       >
-                        {diff.category}
+                        {d(diff.category)}
                       </span>
                       <span>
                         {diff.difference > 0 ? (
@@ -157,7 +160,7 @@ export default function ComparisonRadar() {
                       {diff.difference > 0 && '+'}
                       {diff.difference}%
                     </span>{' '}
-                    Em comparação com o mês anterior
+                    {t('description')}
                   </TooltipContent>
                 </Tooltip>
               ))}

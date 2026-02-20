@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { cn } from '@/lib/utils'
 import type { AvatarBudget } from './data'
 import { Locales } from '@/constants'
-import { useLocale } from 'next-intl'
+import {useLocale, useTranslations} from 'next-intl'
 import {Tooltip, TooltipContent, TooltipTrigger} from '@/components/ui/tooltip'
 
 type Props = {
@@ -14,21 +14,24 @@ type Props = {
 }
 
 export function BudgetDetailsHover({ avatars, colors }: Props) {
+  const t = useTranslations('home.hero_section.budget_card.details_hover_card')
+  const d = useTranslations()
+
   const locale = useLocale()
   return (
     <div className="w-80 flex flex-col gap-5">
       {avatars.map((avatar, index) => (
-        <div key={avatar.name} className="w-full flex items-center gap-3">
+        <div key={avatar.nameKey} className="w-full flex items-center gap-3">
           <Tooltip>
             <TooltipTrigger asChild>
               <Avatar className="ring-background size-10 ring-2 transition-all duration-300 ease-in-out hover:scale-105">
-                <AvatarImage src={avatar.src} alt={avatar.name} />
+                <AvatarImage src={avatar.src} alt={d(avatar.nameKey)} />
                 <AvatarFallback className="text-xs">
-                  {avatar.fallback}
+                  {avatar.fallbackKey}
                 </AvatarFallback>
               </Avatar>
             </TooltipTrigger>
-            <TooltipContent>{avatar.name}</TooltipContent>
+            <TooltipContent>{d(avatar.nameKey)}</TooltipContent>
           </Tooltip>
 
           <div className="w-full">
@@ -41,7 +44,7 @@ export function BudgetDetailsHover({ avatars, colors }: Props) {
               </div>
 
               <div className="w-1/3 flex flex-col gap-1 items-center">
-                <span className="text-muted-foreground text-xs">Gasto</span>
+                <span className="text-muted-foreground text-xs">{t('spent')}</span>
                 <span className="text-xs font-medium">
                   {new Intl.NumberFormat(locale, {
                     style: 'currency',
@@ -55,7 +58,7 @@ export function BudgetDetailsHover({ avatars, colors }: Props) {
               <div className="w-1/3 flex flex-col gap-1 items-center">
                 <span className="text-muted-foreground text-xs">Top Cat.</span>
                 <Badge className={cn(colors[colors.length % index])}>
-                  {avatar.topCategory}
+                  {d(avatar.topCategory)}
                 </Badge>
               </div>
             </div>

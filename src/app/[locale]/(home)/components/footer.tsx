@@ -6,8 +6,10 @@ import { format } from 'date-fns'
 import { Separator } from '@/components/ui/separator'
 import { FaLinkedin, FaSquareFacebook, FaTwitter } from 'react-icons/fa6'
 import { FaInstagramSquare } from 'react-icons/fa'
+import { useTranslations } from 'next-intl'
 
 export function Footer() {
+  const t = useTranslations('home.footer')
   return (
     <section id="footer" className="p-3 h-50 mb-3 flex w-full space-x-10">
       <div className="flex flex-col justify-around items-start">
@@ -35,10 +37,10 @@ export function Footer() {
         <div className="flex gap-3 text-md text-muted-foreground">
           <span>dev@accounted.com.br</span>
           <a className="text-muted-foreground hover:text-black/70 cursor-pointer">
-            Politica de Privacidade
+            {t('privacy_policy')}
           </a>
           <a className="text-muted-foreground hover:text-black/70 cursor-pointer">
-            Termos de Serviço
+            {t('service_terms')}
           </a>
         </div>
 

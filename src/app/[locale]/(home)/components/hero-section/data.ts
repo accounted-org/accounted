@@ -1,7 +1,7 @@
 export type AvatarBudget = {
   src: string
-  fallback: string
-  name: string
+  fallbackKey: string
+  nameKey: string
   total: number
   spend: number
   topCategory: string
@@ -10,43 +10,43 @@ export type AvatarBudget = {
 export const avatars: AvatarBudget[] = [
   {
     src: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-2.png',
-    fallback: 'Mãe',
-    name: 'Mãe',
+    fallbackKey: 'home.feature_section.data.mom',
+    nameKey: 'home.feature_section.data.mom',
     total: 8,
     spend: 400,
-    topCategory: 'Home',
+    topCategory: 'home.feature_section.data.top_category.home',
   },
   {
     src: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-3.png',
-    fallback: 'Pai',
-    name: 'Pai',
+    fallbackKey: 'home.feature_section.data.dad',
+    nameKey: 'home.feature_section.data.dad',
     total: 10,
     spend: 500,
-    topCategory: 'Vehicle',
+    topCategory: 'home.feature_section.data.top_category.vehicle',
   },
   {
     src: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-6.png',
-    fallback: 'Filha',
-    name: 'Filha',
+    fallbackKey: 'home.feature_section.data.daughter',
+    nameKey: 'home.feature_section.data.daughter',
     total: 20,
     spend: 1000,
-    topCategory: 'Shopping',
+    topCategory: 'home.feature_section.data.top_category.shopping',
   },
   {
     src: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-7.png',
-    fallback: 'Filho',
-    name: 'Filho',
+    fallbackKey: 'home.feature_section.data.son',
+    nameKey: 'home.feature_section.data.son',
     total: 7,
     spend: 350,
-    topCategory: 'Internet',
+    topCategory: 'home.feature_section.data.top_category.internet',
   },
   {
     src: 'https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-9.png',
-    fallback: 'Irmão',
-    name: 'Irmão',
+    fallbackKey: 'home.feature_section.data.brother',
+    nameKey: 'home.feature_section.data.brother',
     total: 5,
     spend: 250,
-    topCategory: 'Vehicle',
+    topCategory: 'home.feature_section.data.top_category.vehicle',
   },
 ]
 
@@ -68,8 +68,8 @@ export const processChartData = () => {
     day: number
     currentMonth: number
     lastMonth: number
-    currentMonthDetails: Array<{dependent: string, category: string, spend: number}>
-    lastMonthDetails: Array<{dependent: string, category: string, spend: number}>
+    currentMonthDetails: Array<{dependentKey: string, category: string, spend: number}>
+    lastMonthDetails: Array<{dependentKey: string, category: string, spend: number}>
   }[] = []
 
   const daysInCurrentMonth = new Date(
@@ -89,7 +89,7 @@ export const processChartData = () => {
 
     const currentMonthSpend = currentMonthItems.reduce((sum, item) => sum + item.spend, 0)
     const currentMonthDetails = currentMonthItems.map(item => ({
-      dependent: item.dependent,
+      dependentKey: item.dependentKey,
       category: item.category,
       spend: item.spend
     }))
@@ -103,7 +103,7 @@ export const processChartData = () => {
 
     const lastMonthSpend = lastMonthItems.reduce((sum, item) => sum + item.spend, 0)
     const lastMonthDetails = lastMonthItems.map(item => ({
-      dependent: item.dependent,
+      dependentKey: item.dependentKey,
       category: item.category,
       spend: item.spend
     }))
@@ -121,29 +121,29 @@ export const processChartData = () => {
 }
 
 export const baseChartData = [
-  { month: lastMonth, day: 2, spend: 300, dependent: 'Mãe', category: 'Home' },
-  { month: lastMonth, day: 5, spend: 200, dependent: 'Pai', category: 'Vehicle' },
-  { month: lastMonth, day: 6, spend: 800, dependent: 'Mark', category: 'Business' },
-  { month: lastMonth, day: 9, spend: 500, dependent: 'Filha', category: 'Shopping' },
-  { month: lastMonth, day: 12, spend: 250, dependent: 'Filho', category: 'Internet' },
-  { month: lastMonth, day: 15, spend: 400, dependent: 'Mark', category: 'Business' },
-  { month: lastMonth, day: 18, spend: 500, dependent: 'Filha', category: 'Shopping' },
-  { month: lastMonth, day: 21, spend: 250, dependent: 'Irmão', category: 'Vehicle' },
-  { month: lastMonth, day: 23, spend: 300, dependent: 'Mãe', category: 'Home' },
-  { month: lastMonth, day: 26, spend: 800, dependent: 'Mark', category: 'Business' },
-  { month: lastMonth, day: 28, spend: 200, dependent: 'Pai', category: 'Vehicle' },
+  { month: lastMonth, day: 2, spend: 300, dependentKey: 'home.feature_section.data.mom', category: 'home.feature_section.data.top_category.home' },
+  { month: lastMonth, day: 5, spend: 200, dependentKey: 'home.feature_section.data.dad', category: 'home.feature_section.data.top_category.vehicle' },
+  { month: lastMonth, day: 6, spend: 800, dependentKey: 'home.feature_section.data.mark', category: 'home.feature_section.data.top_category.business' },
+  { month: lastMonth, day: 9, spend: 500, dependentKey: 'home.feature_section.data.daughter', category: 'home.feature_section.data.top_category.shopping' },
+  { month: lastMonth, day: 12, spend: 250, dependentKey: 'home.feature_section.data.son', category: 'home.feature_section.data.top_category.internet' },
+  { month: lastMonth, day: 15, spend: 400, dependentKey: 'home.feature_section.data.mark', category: 'home.feature_section.data.top_category.business' },
+  { month: lastMonth, day: 18, spend: 500, dependentKey: 'home.feature_section.data.daughter', category: 'home.feature_section.data.top_category.shopping' },
+  { month: lastMonth, day: 21, spend: 250, dependentKey: 'home.feature_section.data.brother', category: 'home.feature_section.data.top_category.vehicle' },
+  { month: lastMonth, day: 23, spend: 300, dependentKey: 'home.feature_section.data.mom', category: 'home.feature_section.data.top_category.home' },
+  { month: lastMonth, day: 26, spend: 800, dependentKey: 'home.feature_section.data.mark', category: 'home.feature_section.data.top_category.business' },
+  { month: lastMonth, day: 28, spend: 200, dependentKey: 'home.feature_section.data.dad', category: 'home.feature_section.data.top_category.vehicle' },
 
-  { month: currentMonth, day: 2, spend: 150, dependent: 'Mãe', category: 'Home' },
-  { month: currentMonth, day: 14, spend: 250, dependent: 'Mãe', category: 'Home' },
-  { month: currentMonth, day: 5, spend: 200, dependent: 'Pai', category: 'Vehicle' },
-  { month: currentMonth, day: 19, spend: 300, dependent: 'Pai', category: 'Vehicle' },
-  { month: currentMonth, day: 3, spend: 400, dependent: 'Filha', category: 'Shopping' },
-  { month: currentMonth, day: 11, spend: 300, dependent: 'Filha', category: 'E-Shopping' },
-  { month: currentMonth, day: 22, spend: 300, dependent: 'Filha', category: 'Shopping' },
-  { month: currentMonth, day: 7, spend: 150, dependent: 'Filho', category: 'Internet' },
-  { month: currentMonth, day: 25, spend: 200, dependent: 'Filho', category: 'Internet' },
-  { month: currentMonth, day: 9, spend: 250, dependent: 'Irmão', category: 'Vehicle' },
-  { month: currentMonth, day: 1, spend: 800, dependent: 'Mark', category: 'Business' },
-  { month: currentMonth, day: 13, spend: 700, dependent: 'Mark', category: 'Business' },
-  { month: currentMonth, day: 21, spend: 1000, dependent: 'Mark', category: 'Business' },
+  { month: currentMonth, day: 2, spend: 150, dependentKey: 'home.feature_section.data.mom', category: 'home.feature_section.data.top_category.home' },
+  { month: currentMonth, day: 14, spend: 250, dependentKey: 'home.feature_section.data.mom', category: 'home.feature_section.data.top_category.home' },
+  { month: currentMonth, day: 5, spend: 200, dependentKey: 'home.feature_section.data.dad', category: 'home.feature_section.data.top_category.vehicle' },
+  { month: currentMonth, day: 19, spend: 300, dependentKey: 'home.feature_section.data.dad', category: 'home.feature_section.data.top_category.vehicle' },
+  { month: currentMonth, day: 3, spend: 400, dependentKey: 'home.feature_section.data.daughter', category: 'home.feature_section.data.top_category.shopping' },
+  { month: currentMonth, day: 11, spend: 300, dependentKey: 'home.feature_section.data.daughter', category: 'home.feature_section.data.top_category.shopping' },
+  { month: currentMonth, day: 22, spend: 300, dependentKey: 'home.feature_section.data.daughter', category: 'home.feature_section.data.top_category.shopping' },
+  { month: currentMonth, day: 7, spend: 150, dependentKey: 'home.feature_section.data.son', category: 'home.feature_section.data.top_category.internet' },
+  { month: currentMonth, day: 25, spend: 200, dependentKey: 'home.feature_section.data.son', category: 'home.feature_section.data.top_category.internet' },
+  { month: currentMonth, day: 9, spend: 250, dependentKey: 'home.feature_section.data.brother', category: 'home.feature_section.data.top_category.vehicle' },
+  { month: currentMonth, day: 1, spend: 800, dependentKey: 'home.feature_section.data.mark', category: 'home.feature_section.data.top_category.business' },
+  { month: currentMonth, day: 13, spend: 700, dependentKey: 'home.feature_section.data.mark', category: 'home.feature_section.data.top_category.business' },
+  { month: currentMonth, day: 21, spend: 1000, dependentKey: 'home.feature_section.data.mark', category: 'home.feature_section.data.top_category.business' },
 ]

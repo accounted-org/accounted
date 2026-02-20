@@ -1,6 +1,6 @@
 'use client'
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts'
-import { useLocale } from 'next-intl'
+import {useLocale, useTranslations} from 'next-intl'
 import {
   ChartConfig,
   ChartContainer,
@@ -19,6 +19,8 @@ import {
 
 export default function BudgetCardChart() {
   const locale = useLocale()
+  const t = useTranslations('home.hero_section.totals.budget_chart')
+  const d = useTranslations()
 
   const lastMonth = new Date()
   lastMonth.setMonth(lastMonth.getMonth() - 1)
@@ -29,11 +31,11 @@ export default function BudgetCardChart() {
 
   const chartConfig = {
     currentMonth: {
-      label: 'Mês Atual',
+      label: t('chart_config.current_month'),
       color: 'hsl(0 84.2% 60.2%)',
     },
     lastMonth: {
-      label: 'Mês Anterior',
+      label: t('chart_config.last_month'),
       color: 'var(--main-foreground)',
     },
   } satisfies ChartConfig
@@ -45,7 +47,7 @@ export default function BudgetCardChart() {
 
     return (
       <div className="rounded-lg border bg-background p-3 shadow-sm">
-        <div className="font-medium mb-2">Dia {data.day}</div>
+        <div className="font-medium mb-2">{t('chart_config.day')} {data.day}</div>
 
         {data.currentMonth > 0 && (
           <div className="mb-2">
@@ -57,13 +59,13 @@ export default function BudgetCardChart() {
                 className="h-2 w-2 rounded-full"
                 style={{ backgroundColor: chartConfig.currentMonth.color }}
               />
-              Mês Atual: R$ {data.currentMonth.toFixed(2)}
+              {t('chart_config.current_month')}: R$ {data.currentMonth.toFixed(2)}
             </div>
             {data.currentMonthDetails.length > 0 && (
               <div className="ml-4 mt-1 space-y-1">
                 {data.currentMonthDetails.map((detail: any, idx: number) => (
                   <div key={idx} className="text-xs text-muted-foreground">
-                    {detail.dependent} - {detail.category}: R${' '}
+                    {d(detail.dependentKey)} - {d(detail.category)}: R${' '}
                     {detail.spend.toFixed(2)}
                   </div>
                 ))}
@@ -82,13 +84,13 @@ export default function BudgetCardChart() {
                 className="h-2 w-2 rounded-full"
                 style={{ backgroundColor: chartConfig.lastMonth.color }}
               />
-              Mês Anterior: R$ {data.lastMonth.toFixed(2)}
+              {t('chart_config.last_month')}: R$ {data.lastMonth.toFixed(2)}
             </div>
             {data.lastMonthDetails.length > 0 && (
               <div className="ml-4 mt-1 space-y-1">
                 {data.lastMonthDetails.map((detail: any, idx: number) => (
                   <div key={idx} className="text-xs text-muted-foreground">
-                    {detail.dependent} - {detail.category}: R${' '}
+                    {d(detail.dependentKey)} - {d(detail.category)}: R${' '}
                     {detail.spend.toFixed(2)}
                   </div>
                 ))}
@@ -104,7 +106,7 @@ export default function BudgetCardChart() {
     <>
       <HoverCardContent className="w-[700px] p-6">
         <CardHeader className="p-0 pb-4">
-          <CardTitle>Comparação de Gastos Diários</CardTitle>
+          <CardTitle>{t('title')}</CardTitle>
           <CardDescription>
             {lastMonth.toLocaleDateString(locale, {
               month: 'long',
@@ -167,19 +169,18 @@ export default function BudgetCardChart() {
                 className="h-3 w-3 rounded-full"
                 style={{ backgroundColor: chartConfig.currentMonth.color }}
               />
-              <span className="text-muted-foreground">Mês Atual</span>
+              <span className="text-muted-foreground">{t('chart_config.current_month')}</span>
             </div>
             <div className="flex items-center gap-2">
               <div
                 className="h-3 w-3 rounded-full"
                 style={{ backgroundColor: chartConfig.lastMonth.color }}
               />
-              <span className="text-muted-foreground">Mês Anterior</span>
+              <span className="text-muted-foreground">{t('chart_config.last_month')}</span>
             </div>
           </div>
           <div className="text-muted-foreground">
-            Passe o mouse sobre o gráfico para ver detalhes dos gastos por
-            dependente
+            {t('hover_description')}
           </div>
         </CardFooter>
       </HoverCardContent>

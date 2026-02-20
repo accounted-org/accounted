@@ -11,7 +11,7 @@ import { Locales } from '@/constants'
 import CircularProgress from '@/components/ui/circular-progress'
 import React, { useEffect, useState } from 'react'
 import { fadeInUp } from '@/app/[locale]/(home)/components/utils'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { cn } from '@/lib/utils'
 import FeatureItem from '@/app/[locale]/(home)/components/feature-section/feature-item'
 
@@ -80,14 +80,9 @@ const CounterAnimation = ({
 }
 
 export default function MainFeatures() {
+  const t = useTranslations('home.feature_section.main_features')
   const locale = useLocale()
-  const featureSpotlight: string[] = [
-    'Previsão de saldo',
-    'Alertas de gastos',
-    'Categorias automáticas',
-    'Metas financeiras',
-    'Relatórios claros',
-  ]
+  const featureSpotlight = t.raw('feature_spotlight') as string[]
 
   return (
     <div className="grid gap-6 md:grid-cols-3">
@@ -95,12 +90,12 @@ export default function MainFeatures() {
         <FeatureItem>
           <div className="flex flex-1 flex-col space-y-2">
             <h3 className="font-semibold text-neutral-900 text-xl tracking-tight transition-colors duration-300 group-hover:text-neutral-700 dark:text-neutral-100 dark:group-hover:text-neutral-300">
-              Principais features
+              {t('title')}
             </h3>
           </div>
 
           <p className="text-neutral-600 text-sm tracking-tight dark:text-neutral-400">
-            Nossos serviços minimos garantidos
+            {t('subtitle')}
           </p>
 
           <SpotlightFeature items={featureSpotlight} />
@@ -113,15 +108,18 @@ export default function MainFeatures() {
             <div className="z-10 flex h-full flex-col gap-3 justify-center">
               <span className="text-lg font-bold flex items-center gap-1">
                 <Check className="text-main size-8" />
-                Veja <b className="text-sub ">gastos</b> e{' '}
-                <b className="text-main-foreground">previsões</b> em um único
-                lugar.
+                {t.rich('features_list.forecast', {
+                  g: (chunks) => <b className="text-sub">{chunks}</b>,
+                  p: (chunks) => (
+                    <b className="text-main-foreground">{chunks}</b>
+                  ),
+                })}
               </span>
 
               <div className="flex items-center gap-2">
                 <span className="text-lg font-bold flex items-center gap-1">
                   <Check className="text-main size-8" />
-                  Aumento da sua saúde financeira
+                  {t('features_list.financial_health')}
                 </span>
                 <CounterAnimation
                   start={0}
@@ -141,13 +139,14 @@ export default function MainFeatures() {
                   }).format(locale === Locales.PT_BR ? 300 : 300 / 5.2)}
                   <span className="text-main-foreground">+</span>
                 </span>
-                <span>economizados no último mês</span>
+                <span> {t('features_list.savings')}</span>
               </div>
 
               <span className="text-lg font-bold flex items-center gap-1">
                 <Check className="text-main size-8" />
-                Entenda sua vida financeira em{' '}
-                <b className="text-sub">segundos</b>
+                {t.rich('features_list.financial_life', {
+                  g: (chunks) => <b className="text-sub">{chunks}</b>,
+                })}
               </span>
             </div>
             <div className="relative flex flex-col items-center">

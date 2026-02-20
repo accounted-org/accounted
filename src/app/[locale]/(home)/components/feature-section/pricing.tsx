@@ -17,7 +17,7 @@ import {
   type CarouselApi,
 } from '@/components/ui/carousel'
 import { cn } from '@/lib/utils'
-import { useLocale } from 'next-intl'
+import {useLocale, useTranslations} from 'next-intl'
 import { Locales } from '@/constants'
 
 interface Plan {
@@ -102,6 +102,7 @@ const plans: Plan[] = [
 ]
 
 export default function Pricing() {
+  const t = useTranslations('home.feature_section.pricing')
   const [isYearly, setIsYearly] = useState(true)
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
@@ -124,18 +125,16 @@ export default function Pricing() {
       <div>
         <div className="mx-auto flex w-full flex-col items-center gap-6 text-center">
           <h2 className="text-4xl font-semibold text-pretty lg:text-6xl">
-            Pricing
+            {t('title')}
           </h2>
-          <p className="text-muted-foreground lg:text-xl">
-            Que tipo de economizador você é?
-          </p>
+          <p className="text-muted-foreground lg:text-xl">{t('subtitle')}</p>
           <div className="flex items-center gap-3 text-lg">
-            Monthly
+            {t('period.month')}
             <Switch
               checked={isYearly}
               onCheckedChange={() => setIsYearly(!isYearly)}
             />
-            Yearly
+            {t('period.year')}
           </div>
           <div className="w-full flex flex-col items-center space-y-3">
             <Carousel
@@ -147,6 +146,11 @@ export default function Pricing() {
             >
               <CarouselContent>
                 {plans.map((plan) => {
+                  const formattedPrice = new Intl.NumberFormat(locale, {
+                    currency: locale === Locales.PT_BR ? 'BRL' : 'USD',
+                    style: 'currency',
+                  }).format(plan.yearlyPrice / 100 / 12)
+                  
                   const content = (
                     <Card
                       key={plan.id}
@@ -161,7 +165,9 @@ export default function Pricing() {
                         </p>
                         <div className="flex items-end">
                           {plan.freePlan ? (
-                            <span className="text-4xl font-semibold">Free</span>
+                            <span className="text-4xl font-semibold">
+                              {t('free_plan')}
+                            </span>
                           ) : (
                             <div className="flex flex-col">
                               <div>
@@ -178,22 +184,21 @@ export default function Pricing() {
                                   )}
                                 </span>
                                 <span className="text-2xl font-semibold text-muted-foreground">
-                                  {isYearly ? '/yr' : '/mo'}
+                                  {isYearly
+                                    ? `/${t('period.abbr_year')}`
+                                    : `/${t('period.abbr_month')}`}
                                 </span>
                               </div>
                               {isYearly && (
                                 <span className="text-muted-foreground text-sm">
-                                  Nesse plano você paga{' '}
-                                  <b className="text-sub-foreground">
-                                    {new Intl.NumberFormat(locale, {
-                                      currency:
-                                        locale === Locales.PT_BR
-                                          ? 'BRL'
-                                          : 'USD',
-                                      style: 'currency',
-                                    }).format((plan.yearlyPrice / 100) / 12)}
-                                  </b>
-                                  {" "} por mês
+                                  {t.rich('yearly_plan_description', {
+                                    value: formattedPrice,
+                                    price: (chunks) => (
+                                      <b className="text-sub-foreground">
+                                        {chunks}
+                                      </b>
+                                    ),
+                                  })}
                                 </span>
                               )}
                             </div>
@@ -202,11 +207,6 @@ export default function Pricing() {
                       </CardHeader>
                       <CardContent>
                         <Separator className="mb-6" />
-                        {plan.id === 'pro' && (
-                          <p className="mb-3 font-semibold">
-                            Everything in Plus, and:
-                          </p>
-                        )}
                         <ul className="space-y-4">
                           {plan.features.map((feature, index) => (
                             <li
@@ -222,7 +222,7 @@ export default function Pricing() {
                       <CardFooter className="mt-auto">
                         <Button asChild className="w-full">
                           <a href="/" target="_blank">
-                            Assine já
+                            {t('button')}
                           </a>
                         </Button>
                       </CardFooter>

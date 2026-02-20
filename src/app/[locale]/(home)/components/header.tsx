@@ -26,6 +26,13 @@ export function Header() {
   const router = useRouter()
   const locale = useLocale()
 
+  const handleScrollToPricing = useCallback(() => {
+    const el = document.getElementById('pricing')
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }, [])
+
   const handleChangeLanguage = useCallback(
     (locale: string) => {
       router.replace(pathname, { locale })
@@ -54,7 +61,12 @@ export function Header() {
       </div>
 
       <div className="flex items-end space-x-6">
-        <span className="p-1 text-sm font-medium cursor-pointer text-muted-foreground hover:text-black/80">Pricing</span>
+        <span
+          className="p-1 text-sm font-medium cursor-pointer text-muted-foreground hover:text-black/80"
+          onClick={handleScrollToPricing}
+        >
+          {t('pricing')}
+        </span>
 
         <DropdownMenu>
           <DropdownMenuTrigger className="text-sm flex text-center text-main-foreground cursor-pointer font-bold">
@@ -62,7 +74,7 @@ export function Header() {
           </DropdownMenuTrigger>
 
           <DropdownMenuContent align="center" sideOffset={4}>
-            <DropdownMenuGroup className='font-medium'>
+            <DropdownMenuGroup className="font-medium">
               <DropdownMenuLabel>{l('title')} </DropdownMenuLabel>
               <DropdownMenuItem
                 onClick={() => handleChangeLanguage(Locales.PT_BR)}

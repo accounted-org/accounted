@@ -1,4 +1,4 @@
-import { useLocale } from 'next-intl'
+import {useLocale, useTranslations} from 'next-intl'
 import {
   BriefcaseBusiness,
   CarFront,
@@ -19,25 +19,26 @@ import { Locales } from '@/constants'
 import React from 'react'
 
 export default function TopSpendCategories() {
+  const t = useTranslations('home.feature_section.real_time_monitoring.top_spend_categories')
   const locale = useLocale()
 
   const items = [
     {
       icon: <BriefcaseBusiness className="size-13 text-sub" />,
-      category: 'Negócios',
+      category: t('categories.business'),
       total: 50,
       content: [
         {
           date: new Date('2026-02-19T12:00:00'),
           value: 800,
-          local: 'insumos',
+          local: t('places.supplies'),
           installment: 1,
           totalInstallments: 1,
         },
         {
           date: new Date('2026-02-09T12:00:00'),
           value: 700,
-          local: 'projetos',
+          local: t('places.projects'),
           installment: 1,
           totalInstallments: 2,
         },
@@ -52,27 +53,27 @@ export default function TopSpendCategories() {
     },
     {
       icon: <CarFront className="size-15 text-main-foreground" />,
-      category: 'Veículo',
+      category: t('categories.vehicle'),
       total: 15,
       content: [
         {
           date: new Date('2026-02-19T12:00:00'),
           value: 300,
-          local: 'posto de gasolina',
+          local: t('places.gas_station'),
           installment: 1,
           totalInstallments: 1,
         },
         {
           date: new Date('2026-02-09T12:00:00'),
           value: 250,
-          local: 'americanas',
+          local: t('places.parts'),
           installment: 3,
           totalInstallments: 12,
         },
         {
           date: new Date('2026-02-05T12:00:00'),
           value: 200,
-          local: 'posto de gasolina',
+          local: t('places.gas_station'),
           installment: 1,
           totalInstallments: 1,
         },
@@ -80,20 +81,20 @@ export default function TopSpendCategories() {
     },
     {
       icon: <ShoppingCart className="size-15 text-orange-600" />,
-      category: 'Shopping',
+      category: t('categories.shopping'),
       total: 14,
       content: [
         {
           date: new Date(),
           value: 300,
-          local: 'Zara',
+          local: t('places.clothes'),
           installment: 1,
           totalInstallments: 1,
         },
         {
           date: new Date(),
           value: 400,
-          local: 'Lacoste',
+          local: t('places.clothes'),
           installment: 1,
           totalInstallments: 3,
         },
@@ -111,9 +112,9 @@ export default function TopSpendCategories() {
     <div className="flex h-full p-4 flex-2">
       <div className="w-full flex flex-col items-center">
         <div className="mb-2 text-center">
-          <h3 className="text-lg font-semibold">Categorias com mais gasto</h3>
+          <h3 className="text-lg font-semibold">{t('title')}</h3>
           <p className="text-sm text-muted-foreground">
-            Conheça o vilão do seu mês
+            {t('subtitle')}
           </p>
         </div>
         <Card className="h-full w-full">

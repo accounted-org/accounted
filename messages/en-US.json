@@ -13,9 +13,123 @@
         "forecast": "Forecasts",
         "economy": "Economy"
       },
+      "pricing": "Pricing",
       "sessionButton": "Login"
     },
-    "meta_description": "Your personal finance manager."
+    "meta_description": "Your personal finance manager.",
+    "footer": {
+      "privacy_policy": "Privacy Policy",
+      "service_terms": "Service Terms"
+    },
+    "hero_section": {
+      "title": "The smart way to manage your <g>finances</g>",
+      "subtitle": "Your accounts, your future, your control, all in one place",
+      "button": "Start now",
+      "budget_card": {
+        "title": "Your space",
+        "avatar": "Mark",
+        "description": "Budget utilization reached 100%",
+        "avatar_spend": "Your spending",
+        "details_hover_card": {
+          "spent": "Spent"
+        }
+      },
+      "totals": {
+        "metrics_data": {
+          "spent_change": "Spent change",
+          "remaining_budget": "Remaining budget",
+          "daily_spend": "Daily spend"
+        },
+        "budget_chart": {
+          "title": "Daily spend comparison",
+          "hover_description": "Hover your mouse over the graph to see details of expenses by day",
+          "chart_config": {
+            "current_month": "Current month",
+            "last_month": "Last month",
+            "day": "Day"
+          }
+        }
+      }
+    },
+    "feature_section": {
+      "title": "See what truly impacts your finances",
+      "subtitle": "Identify excesses, opportunities for savings, and where to adjust your budget.",
+      "data": {
+        "mark": "Mark",
+        "mom": "Mom",
+        "dad": "Dad",
+        "daughter": "Daughter",
+        "son": "Son",
+        "brother": "Brother",
+        "top_category": {
+          "business": "Business",
+          "shopping": "Shopping",
+          "internet": "Internet",
+          "vehicle": "Vehicle",
+          "home": "Home"
+        }
+      },
+      "main_features": {
+        "title": "Main Features",
+        "subtitle": "Our guaranteed minimum services",
+        "feature_spotlight": [
+          "Balance Forecast",
+          "Spending alerts",
+          "Financial goals",
+          "Clear reports",
+          "Finance Organization"
+        ],
+        "features_list": {
+          "forecast": "See <g>expenses</g> and <p>forecasts</p> in one place",
+          "financial_health": "Increase of your financial health",
+          "savings": "in saves from the last month",
+          "financial_life": "Understand your financial life in <g>seconds</g>"
+        }
+      },
+      "real_time_monitoring": {
+        "title": "Real-time monitoring",
+        "top_spend_categories": {
+          "title": "Categories with the highest spending",
+          "subtitle": "Meet the villain of your month",
+          "categories": {
+            "business": "Business",
+            "vehicle": "Vehicle",
+            "shopping": "Shopping"
+          },
+          "places": {
+            "supplies": "Supplies",
+            "projects": "Projects",
+            "gas_station": "Gas station",
+            "parts": "Parts",
+            "clothes": "Levi's"
+          },
+          "debit": "Debit",
+          "card": "Card 01"
+        },
+        "comparison_radar": {
+          "title": "Spend per category",
+          "subtitle": "Comparison between this month and the previous month.",
+          "description": "Compared to the previous month",
+          "chart_config": {
+            "current_month": "Current month",
+            "last_month": "Last month"
+          }
+        }
+      },
+      "pricing": {
+        "title": "Pricing",
+        "subtitle": "What type of saver are you?",
+        "free_plan": "Free",
+        "period": {
+          "month": "Monthly",
+          "year": "Yearly",
+          "abbr_month": "mo",
+          "abbr_year": "yr"
+        },
+        "yearly_plan_description": "In this plan you'll pay <price>{value}</price> per month.",
+        "button": "Subscribe now"
+      }
+    }
   },
   "transactions": {
     "title": "Transactions",

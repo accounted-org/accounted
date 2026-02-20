@@ -17,7 +17,7 @@ import { BudgetDetailsHover } from './budget-details-hover'
 import type { AvatarBudget } from './data'
 import { Locales } from '@/constants'
 import Totals from '@/app/[locale]/(home)/components/hero-section/totals'
-import { useLocale } from 'next-intl'
+import {useLocale, useTranslations} from 'next-intl'
 
 type Props = {
   avatars: AvatarBudget[]
@@ -25,26 +25,28 @@ type Props = {
 }
 
 export function BudgetCard({ avatars, colors }: Props) {
+  const t = useTranslations('home.hero_section.budget_card')
+
   const locale = useLocale()
   return (
     <Card className="border-main/40 relative">
       <CardContent className="space-y-4">
         <div className="flex flex-col gap-4">
-          <span className="text-sm font-semibold">Your space</span>
+          <span className="text-sm font-semibold">{t('title')}</span>
 
           <div className="flex justify-between items-center">
             <section className="flex items-center gap-3">
               <Avatar className="rounded-sm w-14 h-14">
                 <AvatarImage
                   src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-5.png"
-                  alt="Hallie Richards"
+                  alt={t('avatar')}
                   className="rounded-sm"
                 />
-                <AvatarFallback className="text-xs">HR</AvatarFallback>
+                <AvatarFallback className="text-xs">{t('avatar')}</AvatarFallback>
               </Avatar>
 
               <div className="flex flex-col">
-                <span className="text-xl font-medium">Mark</span>
+                <span className="text-xl font-medium">{t('avatar')}</span>
 
                 <div className="flex items-center gap-2">
                   <span className="flex text-xs items-center gap-2 text-muted-foreground truncate">
@@ -54,7 +56,7 @@ export function BudgetCard({ avatars, colors }: Props) {
                         <LucideAlertCircle className="size-4 text-yellow-600 animate-pulse" />
                       </TooltipTrigger>
                       <TooltipContent>
-                        Uso do orçamento chegou a 100%
+                        {t('description')}
                       </TooltipContent>
                     </Tooltip>
                   </span>
@@ -72,7 +74,7 @@ export function BudgetCard({ avatars, colors }: Props) {
               </div>
             </section>
             <section className="flex flex-col text-2xl">
-              <span className="text-sm text-muted-foreground">Seu gasto</span>
+              <span className="text-sm text-muted-foreground">{t('avatar_spend')}</span>
               <div>
                 {new Intl.NumberFormat(locale, {
                   style: 'currency',

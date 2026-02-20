@@ -10,11 +10,13 @@ import { AlertCircle, CalendarDays, TrendingUpIcon, Wallet } from 'lucide-react'
 import { Locales } from '@/constants'
 import { HoverCard, HoverCardTrigger } from '@/components/ui/hover-card'
 import BudgetCardChart from '@/app/[locale]/(home)/components/hero-section/budget-card-chart'
-import { useLocale } from 'next-intl'
+import {useLocale, useTranslations} from 'next-intl'
 import { useEffect, useState } from 'react'
 import { cn } from '@/lib/utils'
 
 export default function Totals() {
+  const t = useTranslations('home.hero_section.totals')
+
   const locale = useLocale()
   const [api, setApi] = useState<CarouselApi>()
   const [current, setCurrent] = useState(0)
@@ -34,7 +36,7 @@ export default function Totals() {
   const MetricsData = [
     {
       icons: <TrendingUpIcon className="size-4.5 text-red-500" />,
-      title: 'Spent change',
+      title: t('metrics_data.spent_change'),
       value: (
         <span className="text-red-500 select-text">
           {new Intl.NumberFormat(locale, {
@@ -48,7 +50,7 @@ export default function Totals() {
     },
     {
       icons: <Wallet className="size-4.5 text-sub-foreground" />,
-      title: 'Remaining budget',
+      title: t('metrics_data.remaining_budget'),
       value: (
         <>
           <span className="select-text text-sub-foreground font-medium">
@@ -68,7 +70,7 @@ export default function Totals() {
     },
     {
       icons: <CalendarDays className="size-4.5" />,
-      title: 'Daily Spend',
+      title: t('metrics_data.daily_spend'),
       value: (
         <span className="select-text">
           {new Intl.NumberFormat(locale, {
